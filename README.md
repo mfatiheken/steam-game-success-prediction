@@ -1,72 +1,75 @@
-# Steam Oyun Başarısının Tahmini
+# Steam Oyunlarının Başarısını Tahmin Etme
 
 ## 1. Proje Hakkında
 
-Steam'de her yıl çok sayıda oyun yayınlanıyor ancak bazı oyunlar daha fazla oyuncuya ulaşırken bazıları daha az ilgi görüyor. Bu projede oyunların fiyatı, türü, çıkış tarihi ve kullanıcı değerlendirmeleri gibi özelliklerin oyun başarısıyla ilişkisini incelemek istiyorum.
+Bu projede Steam platformundaki oyunların özelliklerine ve kullanıcı değerlendirmelerine bakarak oyunların başarılı olup olmadığını tahmin etmeye çalışacağım.
 
-**Araştırma sorusu:** Steam oyunlarının özellikleri ve kullanıcı değerlendirmeleri kullanılarak bir oyunun başarılı olup olmadığı tahmin edilebilir mi?
+Steam'de çok fazla oyun bulunuyor ve her oyun aynı başarıyı elde edemiyor. Oyunların fiyatı, türü ve kullanıcı yorumları gibi özelliklerin başarıyla ilişkili olup olmadığını araştırmak istiyorum.
 
-**Projenin amacı:** Steam oyunlarına ait verileri inceleyerek oyun başarısıyla ilişkili özellikleri belirlemek ve bu özelliklerden yararlanarak bir tahmin modeli geliştirmek.
+**Araştırma sorum:** Bir oyunun özelliklerine ve kullanıcı değerlendirmelerine bakarak başarılı olup olmayacağını tahmin edebilir miyiz?
 
-## 2. Ön Literatür
+## 2. Daha Önce Yapılan Araştırmalar
 
-Proje için Steam oyunlarının popülerliği, başarı tahmini ve kullanıcı yorumları üzerine üç akademik çalışma belirledim.
+Projeye başlamadan önce konuyla ilgili bazı akademik çalışmaları inceledim.
 
-1. **De Luisa ve arkadaşları (2021)** – *Predicting the Popularity of Games on Steam*. Bu çalışmada oyunların fiyatı, türü ve diğer özellikleri ile popülerlikleri arasındaki ilişki incelenmiştir. [Makaleyi incele](https://arxiv.org/abs/2110.02896)
+- **Predicting the Popularity of Games on Steam (2021):** Bu çalışmada Steam oyunlarının popülerliğinin oyun özelliklerinden yararlanılarak tahmin edilmesi araştırılmıştır.
 
-2. **Guzsvinecz ve Szűcs (2023)** – *Length and sentiment analysis of reviews about top-level video game genres on the Steam platform*. Bu çalışmada Steam'deki milyonlarca kullanıcı yorumu incelenerek oyun türleri ve yorumlardaki duygu özellikleri araştırılmıştır. [Makaleyi incele](https://doi.org/10.1016/j.chb.2023.107955)
+  https://arxiv.org/abs/2110.02896
 
-3. **Preedanon ve Kluaymai-ngarm (2026)** – *Predicting the Success of Games on Steam Platform*. Bu çalışmada Steam oyunlarının başarı durumunu tahmin etmek için lojistik regresyon kullanılmıştır. [Makaleyi incele](https://so06.tci-thaijo.org/index.php/TNIJournalBA/article/view/290220)
+- **Length and sentiment analysis of reviews about top-level video game genres on the Steam platform (2023):** Bu araştırmada Steam kullanıcı yorumları incelenmiş ve oyun türlerine göre yorumların özellikleri analiz edilmiştir.
 
-Bu kaynaklar, oyun özellikleri ve kullanıcı değerlendirmelerinin oyun başarısını araştırırken incelenebilecek değişkenler olduğunu göstermektedir.
+  https://doi.org/10.1016/j.chb.2023.107955
 
-## 3. Veri Seti
+- **Predicting the Success of Games on Steam Platform (2026):** Bu çalışmada Steam oyunlarının başarısını tahmin etmek için farklı oyun özellikleri ve lojistik regresyon yöntemi ele alınmıştır.
 
-**Veri setinin adı:** Steam Games Dataset 2025
+  https://so06.tci-thaijo.org/index.php/TNIJournalBA/article/view/290220
 
-**Kaynak:** Kaggle
+## 3. Kullanacağım Veri Seti
 
-**Bağlantı:** https://www.kaggle.com/datasets/artermiloff/steam-games-dataset
+Projede Kaggle üzerinden paylaşılan **Steam Games Dataset 2025** veri setini kullanmayı planlıyorum.
 
-**Lisans:** Kaggle sayfasında MIT License olarak belirtilmiştir.
+**Veri seti bağlantısı:**
 
-Veri seti, Mart 2025 itibarıyla Steam'de yayınlanan 90.000'den fazla oyuna ait bilgileri içermektedir.
+https://www.kaggle.com/datasets/artermiloff/steam-games-dataset
 
-İncelenmesi planlanan değişkenler şunlardır:
+İlk olarak veri setini indirip içindeki bilgileri inceleyeceğim. Veri setinde bulunması durumunda oyunların fiyatı, türü, çıkış tarihi, kullanıcı yorumları ve olumlu-olumsuz değerlendirme sayıları gibi bilgileri kullanacağım.
 
-- Oyun fiyatı
-- Oyun türü ve etiketleri
-- Çıkış tarihi
-- Kullanıcı değerlendirmeleri
-- Olumlu ve olumsuz yorum sayıları, veri setinde mevcutsa
-- Tahmini sahip sayısı veya oyuncu sayısı gibi başarı göstergeleri, mevcut sütunlara bağlı olarak
+Ayrıca hangi sütunların mevcut olduğunu, eksik verilerin bulunup bulunmadığını ve veri setinin kullanım koşullarını kontrol edeceğim.
 
-Veri setini seçmemin nedeni, çok sayıda oyuna ait bilgileri bir arada sunması ve araştırma sorusunu incelemek için uygun bir başlangıç noktası olmasıdır. Analiz öncesinde sütunlar, eksik veriler ve lisans koşulları kontrol edilecektir.
+## 4. Kullanacağım Yöntem
 
-## 4. İlk Yöntem ve Hipotez
+Bu projede sayısal veriler üzerinden ilerleyeceğim. İlk olarak veri setini inceleyip gerekli düzenlemeleri yapacağım.
 
-Bu çalışmada nicel araştırma yaklaşımı kullanılacak ve hazır bir veri seti üzerinden ikincil veri analizi yapılacaktır.
+Daha sonra **Lojistik Regresyon** yöntemini kullanarak oyunları başarılı ve başarılı olmayan şeklinde sınıflandırmayı deneyeceğim. Bunun için öncelikle bir oyunun hangi koşullarda başarılı sayılacağını belirlemem gerekiyor.
 
-İlk aşamada **Lojistik Regresyon** algoritmasının kullanılması planlanmaktadır. Oyunlar, belirlenecek başarı ölçütüne göre başarılı ve başarısız şeklinde iki gruba ayrılacaktır. Başarı ölçütü, veri setindeki uygun değişkenler ve dağılımlar incelendikten sonra kesinleştirilecektir.
+Modelin sonuçlarını değerlendirmek için doğruluk (accuracy), kesinlik (precision), duyarlılık (recall) ve F1 skoru gibi ölçütleri kullanmayı planlıyorum.
 
-**Hipotez (H1):** Kullanıcı değerlendirme oranı ve toplam yorum sayısı yükseldikçe bir oyunun belirlenen başarı ölçütünü karşılama olasılığının artması beklenmektedir.
+**Araştırma beklentim:** Olumlu kullanıcı yorumlarının ve yorum sayısının oyunların başarısıyla ilişkili olabileceğini düşünüyorum. Analiz sonucunda bu beklentinin verilerle desteklenip desteklenmediğini inceleyeceğim.
 
-Modelin sonuçları doğruluk, precision, recall ve F1-score gibi ölçütlerle değerlendirilecektir.
+## 5. Projede İzleyeceğim Adımlar
 
-## 5. Gelecek Adımlar
-
-1. Veri setini indirmek ve sütunlarını incelemek.
-2. Eksik veya hatalı verileri kontrol etmek.
-3. Oyun başarısını ölçmek için uygun bir değişken ve eşik belirlemek.
-4. Verileri modelleme için hazırlamak.
-5. Lojistik Regresyon modelini uygulamak.
-6. Model sonuçlarını değerlendirmek ve hipotezi incelemek.
-7. Elde edilen sonuçları ve çalışmanın sınırlılıklarını raporlamak.
+1. Veri setini indirip incelemek.
+2. Kullanabileceğim sütunları belirlemek.
+3. Eksik veya hatalı verileri kontrol edip gerekli düzenlemeleri yapmak.
+4. Oyunun başarısını belirlemek için uygun bir ölçüt seçmek.
+5. Lojistik Regresyon modelini oluşturmak.
+6. Modelin sonuçlarını değerlendirmek.
+7. Elde ettiğim sonuçları yorumlayıp proje raporunu hazırlamak.
 
 ## 6. Kaynakça
 
-De Luisa, A., Hartman, J., Nabergoj, D., Pahor, S., Rus, M., Stevanoski, B., Demšar, J., & Štrumbelj, E. (2021). *Predicting the popularity of games on Steam*. Elektrotehniški vestnik, 88(4), 151–162. https://arxiv.org/abs/2110.02896
+1. De Luisa, A. ve diğerleri (2021). *Predicting the Popularity of Games on Steam*. Elektrotehniški vestnik, 88(4), 151–162.
 
-Guzsvinecz, T., & Szűcs, J. (2023). *Length and sentiment analysis of reviews about top-level video game genres on the Steam platform*. Computers in Human Behavior, 149, 107955. https://doi.org/10.1016/j.chb.2023.107955
+   https://arxiv.org/abs/2110.02896
 
-Preedanon, D., & Kluaymai-ngarm, J. (2026). *Predicting the success of games on Steam platform*. Journal of Business Administration and Languages, 14(2), 56–75. https://so06.tci-thaijo.org/index.php/TNIJournalBA/article/view/290220
+2. Guzsvinecz, T. ve Szűcs, J. (2023). *Length and sentiment analysis of reviews about top-level video game genres on the Steam platform*. Computers in Human Behavior, 149, 107955.
+
+   https://doi.org/10.1016/j.chb.2023.107955
+
+3. Preedanon, D. ve Kluaymai-ngarm, J. (2026). *Predicting the Success of Games on Steam Platform*. Journal of Business Administration and Languages, 14(2), 56–75.
+
+   https://so06.tci-thaijo.org/index.php/TNIJournalBA/article/view/290220
+
+4. Artermiloff. *Steam Games Dataset 2025*. Kaggle.
+
+   https://www.kaggle.com/datasets/artermiloff/steam-games-dataset
