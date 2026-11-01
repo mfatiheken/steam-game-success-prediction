@@ -73,3 +73,22 @@ Modelin sonuçlarını değerlendirmek için doğruluk (accuracy), kesinlik (pre
 4. Artermiloff. *Steam Games Dataset 2025*. Kaggle.
 
    https://www.kaggle.com/datasets/artermiloff/steam-games-dataset
+
+   ## UML Diyagramları
+
+Bu bölümde projenin planlanan yapısını göstermek için üç UML diyagramı hazırlanmıştır.
+
+### 1. Use Case Diagram
+Araştırmacının veri setini yükleme, inceleme ve temizleme, modeli eğitme, tahmin yapma ve sonuçları görüntüleme işlemlerini gösterir.
+
+![Use Case Diagram](diagrams/use_case_diagram.png)
+
+### 2. Activity Diagram
+Veri setinin incelenmesinden modelin eğitilmesine ve sonuçların değerlendirilmesine kadar planlanan iş akışını gösterir.
+
+![Activity Diagram](diagrams/activity_diagram.png)
+
+### 3. Class Diagram
+Dataset, Game, DataPreprocessor, DataSplit, PredictionModel, Evaluation ve PredictionResult sınıflarını ve aralarındaki ilişkileri gösterir.
+
+![Class Diagram](diagrams/class_diagram.png)
