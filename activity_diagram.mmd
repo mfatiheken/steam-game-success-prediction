@@ -1,0 +1,9 @@
+flowchart TD
+A([Başla]) --> B[Steam veri setini yükle] --> C[Veri setini incele] --> D{Veri seti uygun mu?}
+D -- Hayır --> E[Veri setini gözden geçir] --> C
+D -- Evet --> F{Eksik veya hatalı veri var mı?}
+F -- Evet --> G[Verileri temizle] --> I[Özellikleri ve başarı ölçütünü belirle]
+F -- Hayır --> H[Temizleme adımını atla] --> I
+I --> J[Veriyi eğitim ve test olarak ayır] --> K[Lojistik Regresyon modelini eğit] --> L[Model performansını değerlendir] --> M{Sonuçlar yeterli mi?}
+M -- Hayır --> N[Özellikleri veya ayarları gözden geçir] --> K
+M -- Evet --> O[Tahminleri üret ve sonuçları göster] --> P([Bitir])

@@ -1,0 +1,61 @@
+classDiagram
+class Dataset {
+ -String filePath
+ -List~Game~ games
+ +load() List~Game~
+ +validate() Boolean
+}
+class Game {
+ -Integer appId
+ -String name
+ -Float price
+ -List~String~ genres
+ -Integer positiveReviews
+ -Integer negativeReviews
+ -Boolean successLabel
+ +getPositiveRate() Float
+ +determineSuccess() Boolean
+}
+class DataPreprocessor {
+ -Float testRatio
+ -List~String~ selectedFeatures
+ +clean(data) Dataset
+ +encode(data) Dataset
+ +split(data) DataSplit
+}
+class DataSplit {
+ -Matrix trainFeatures
+ -Matrix testFeatures
+ -Vector trainLabels
+ -Vector testLabels
+ +getTrainData() Matrix
+ +getTestData() Matrix
+}
+class PredictionModel {
+ -String algorithm
+ -Map parameters
+ +train(data) Void
+ +predict(game) PredictionResult
+}
+class Evaluation {
+ -Float accuracy
+ -Float precision
+ -Float recall
+ -Float f1Score
+ +evaluate(actual,predicted) Void
+ +calculateMetrics() Void
+}
+class PredictionResult {
+ -Integer gameId
+ -String predictedClass
+ -Float successProbability
+ +display() Void
+ +getPrediction() String
+}
+Dataset "1" *-- "1..*" Game : içerir
+DataPreprocessor ..> Dataset : veriyi işler
+DataPreprocessor ..> DataSplit : oluşturur
+PredictionModel ..> DataSplit : eğitim/test verisi
+PredictionModel ..> Game : oyun bilgisi
+PredictionModel ..> PredictionResult : sonuç üretir
+Evaluation ..> PredictionResult : değerlendirir

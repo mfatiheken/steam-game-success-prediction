@@ -1,0 +1,18 @@
+flowchart LR
+U["Araştırmacı / Kullanıcı"]
+subgraph S["Steam Oyun Başarı Tahmin Sistemi"]
+A([Veri setini yükle]) 
+B([Veri setini incele])
+C([Verileri temizle])
+D([Başarı ölçütünü belirle])
+E([Modeli eğit])
+F([Oyun başarısını tahmin et])
+G([Model sonuçlarını görüntüle])
+end
+U --- A
+U --- B
+U --- C
+U --- D
+U --- E
+U --- F
+U --- G
