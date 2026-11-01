@@ -81,14 +81,14 @@ Bu bölümde projenin planlanan yapısını göstermek için üç UML diyagramı
 ### 1. Use Case Diagram
 Araştırmacının veri setini yükleme, inceleme ve temizleme, modeli eğitme, tahmin yapma ve sonuçları görüntüleme işlemlerini gösterir.
 
-![Use Case Diagram](diagrams/use_case_diagram.png)
+![Use Case Diagram](Diagrams/use_case_diagram.png)
 
 ### 2. Activity Diagram
 Veri setinin incelenmesinden modelin eğitilmesine ve sonuçların değerlendirilmesine kadar planlanan iş akışını gösterir.
 
-![Activity Diagram](diagrams/activity_diagram.png)
+![Activity Diagram](Diagrams/activity_diagram.png)
 
 ### 3. Class Diagram
 Dataset, Game, DataPreprocessor, DataSplit, PredictionModel, Evaluation ve PredictionResult sınıflarını ve aralarındaki ilişkileri gösterir.
 
-![Class Diagram](diagrams/class_diagram.png)
+![Class Diagram](Diagrams/class_diagram.png)
