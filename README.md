@@ -92,3 +92,50 @@ Veri setinin incelenmesinden modelin eğitilmesine ve sonuçların değerlendiri
 Dataset, Game, DataPreprocessor, DataSplit, PredictionModel, Evaluation ve PredictionResult sınıflarını ve aralarındaki ilişkileri gösterir.
 
 ![Class Diagram](Diagrams/class_diagram.png)
+
+
+## Google Colab Çalışmaları
+
+Projenin veri analizi çalışmaları Python ve Google Colab kullanılarak gerçekleştirilmiştir.
+
+**Google Colab Notebook:**  
+[Notebook'u görüntüle](https://colab.research.google.com/drive/1vrxNabBfwhnvSronYT1FxjGwY3LJxn7r?usp=sharing)
+
+Bu aşamada gerçekleştirilen çalışmalar:
+
+- Steam Games Dataset 2025 veri setinin Colab ortamına aktarılması.
+- Veri setinin satır ve sütun sayılarının incelenmesi.
+- Eksik verilerin analiz edilmesi.
+- Sayısal değişkenler için temel istatistiklerin hesaplanması.
+- Pozitif kullanıcı değerlendirme oranlarının grafikle gösterilmesi.
+- Analiz sonuçlarının CSV ve PNG formatlarında kaydedilmesi.
+
+### Veri Analizi Sonuçları
+
+Kullanılan `games_march2025_cleaned.csv` dosyasında 89.618 oyun kaydı ve 47 sütun bulunmaktadır.
+
+İlk analizlerde:
+- Ortalama oyun fiyatı: 7,31
+- Ortalama pozitif değerlendirme oranı: %77,08
+- Ortalama toplam kullanıcı değerlendirme sayısı: 2.216,73
+- Pozitif değerlendirme oranı için geçerli kayıt sayısı: 53.199
+
+`pct_pos_total` ve `num_reviews_total` sütunlarında bulunan -1 değerleri bu analizde geçersiz değer olarak ele alınmış ve ilgili hesaplamaların dışında bırakılmıştır.
+
+### Analiz Çıktıları
+
+- [Temel istatistikler](outputs/ozet.csv)
+- [Eksik veri özeti](outputs/eksik_veri_ozeti.csv)
+- [Pozitif değerlendirme grafiği](outputs/grafik.png)
+
+### Veri Kaynağı ve Lisans
+
+- Veri seti: Steam Games Dataset 2025
+- Kaynak: [Kaggle – Steam Games Dataset](https://www.kaggle.com/datasets/artermiloff/steam-games-dataset)
+- Lisans: MIT (Kaggle veri seti sayfasındaki lisans koşulları geçerlidir).
+
+Ham veri dosyaları boyutları nedeniyle GitHub deposuna eklenmemiş, Google Colab ortamında kullanılmıştır.
+
+### Projenin Mevcut Durumu
+
+Projenin veri tanıma, eksik veri inceleme ve temel görselleştirme aşamaları gerçekleştirilmiştir. Lojistik Regresyon modelinin kurulması ve performans değerlendirmesi sonraki çalışma aşamalarıdır.
